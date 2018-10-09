@@ -1,0 +1,55 @@
+#Q4
+D3 <- filter(D1, id_assessment == 37426)
+mean.score <- mean(D3$score)
+
+wrongscore <- mean(D1$score, na.rm = TRUE)
+
+#Q5
+hist(D1$studied_credits, breaks = 100)
+
+#Q6
+plot(D1$age_band, D1$studied_credits)
+
+boxplot(data = D1, studied_credits ~ age_band, col = D1$age_band)
+
+#Q7 - remove gender
+D3 <- select(D1, id_student, age_band, studied_credits)
+
+#Q8
+D3 <- slice(D3, 1:200)
+
+studentid <- unique(D3$id_student)
+
+#Q9
+D4 <- spread(D3, age_band, studied_credits)
+
+#Q10
+D4 <- unite(D4, "0-35", "35-55", "55<=", sep = "~")
+
+#Q11
+studentID <- unique(D1$id_student)
+
+#Q12
+#Days since module starts
+
+#Q13
+D5 <- filter(D2, is_banked == 1)
+
+#Q14
+D6 <- D2 %>% group_by(id_student) %>% summarise(avg.score = mean(score, na.rm = TRUE))
+
+#Q15
+#A data frame can incorporate columns of differing types, a matrix cannot
+
+#Q16
+D7 <- inner_join(D2, D1, by = "id_student")
+
+#Q17
+D8 <- transmute(D1, attempt.credits = studied_credits - num_of_prev_attempts*10)
+
+#Q18
+D9 <- D7 %>% group_by(region) %>% mutate(av.credits = mean(studied_credits), av.score = mean(score, na.rm = TRUE))
+
+#Q19
+library(ggplot2)
+ggplot(D9, aes(av.credits, av.score, col = region)) + geom_point()
