@@ -1,0 +1,35 @@
+---
+title: "test_plot"
+output: html_document
+---
+
+```{r}
+data <- read.csv("Test-anon.csv",header=TRUE)
+question_results <- data[1:20]
+total_scores <- data[21]
+question_results_sum <- colSums(question_results)
+barplot(question_results_sum)
+
+
+
+analysis_questions <- 
+jitl_questions <- 
+visualization_questions <-
+wrangling_questions <- 
+  
+
+
+```
+```{r}
+question_results_matrix=as.matrix(question_results)
+head(question_results_matrix)
+heatmap(question_results_matrix, Colv = NA, Rowv = NA, scale="column", col = terrain.colors(256))
+```
+```{r}
+heatmap(question_results_matrix,scale="column", col = terrain.colors(256))
+```
+
+```{r}
+boxplot(total_scores)
+
+```
